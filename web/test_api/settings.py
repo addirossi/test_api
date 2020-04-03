@@ -58,6 +58,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+
+    'test_api.account',
+    'test_api.core',
 ]
 
 DATABASES = {

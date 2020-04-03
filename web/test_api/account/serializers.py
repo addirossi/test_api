@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(required=True, min_length=6)
+    password = serializers.CharField(required=True, min_length=6, write_only=True)
 
     class Meta:
         model = User
@@ -15,10 +15,6 @@ class UserSerializer(serializers.ModelSerializer):
             'last_name',
             'is_active',
         )
-
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
 
     def create(self, validated_data):
         user = User.objects.create_user(username=validated_data['username'], password=validated_data['password'])

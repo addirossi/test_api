@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
 from test_api.account.views import LoginView, LogoutView, RegisterView
+from test_api.core.views import AppViewSet, APITestView
 
 
 class OptionalSlashRouter(SimpleRouter):
@@ -12,11 +13,14 @@ class OptionalSlashRouter(SimpleRouter):
 
 
 router = OptionalSlashRouter()
+router.register('app', AppViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/register/', RegisterView.as_view(), name='register-view'),
-    path('api/v1/login', LoginView.as_view(), name='login-view'),
-    path('api/v1/logout', LogoutView.as_view(), name='logout-view'),
+    path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register-view'),
+    path('login', LoginView.as_view(), name='login-view'),
+    path('logout', LogoutView.as_view(), name='logout-view'),
+    path('api/test/', APITestView.as_view(), name='app-test')
 ]

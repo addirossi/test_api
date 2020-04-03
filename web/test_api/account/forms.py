@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 
 
 class LoginForm(forms.Form):
-    email = forms.CharField()
+    username = forms.CharField()
     password = forms.CharField()
 
     def get_user_token(self):
