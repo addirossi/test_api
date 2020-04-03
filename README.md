@@ -49,3 +49,56 @@ docker-compose exec web python manage.py migrate
 #### Доступ к проекту ####
 После успешного выполнения всех предыдущих действий Ваш проект будет доступен по **http://localhost:номер_порта**
 
+
+Описание запросов
+==================
+
+#### Регистрация ###
+
+Для регистрации пользователя необходимо сделать **POST**-запрос на эндпоинт:
+```http
+POST /register/
+```
+
+Тело запроса 
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `username` | `string` | **обязательно** |
+| `password` | `string` | **обязательно** |
+| `password_confirmation` | `string` | **обязательно** |
+| `first_name` | `string` | необязательно |
+| `last_name` | `string` | необязательно |
+
+**Ответ**
+```
+Status code: 201
+"Successfully created"
+```
+
+#### Авторизация ####
+
+Для авторизации пользователя необходимо сделать **POST**-запрос на эндпоинт:
+```http
+POST /login/
+```
+
+Тело запроса 
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `username` | `string` | **обязательно** |
+| `password` | `string` | **обязательно** |
+
+
+**Ответ**
+```
+Status code: 201
+{
+  "id": 1,
+  "username": "cooluser",
+  "first_name": "Ivan",
+  "last_name": "Pupkin",
+  "token": "6ce5e4a1ec6876064c7fe16b68e61739ec88e31b"
+}
+```

@@ -13,7 +13,6 @@ class UserSerializer(serializers.ModelSerializer):
             'password',
             'first_name',
             'last_name',
-            'is_active',
         )
 
     def create(self, validated_data):
