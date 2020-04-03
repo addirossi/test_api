@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  # PostgreSQL
+  postgres:
+    restart: always
+    image: postgres:11.6
+    ports:
+      - "5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+
+  web:
+    restart: always
+    build: ./web
+    command: bash -c "sleep 10 && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8050:8000"
+    links:
+      - postgres:postgres
+    volumes:
+      - ./web:/usr/src/app
+      - ./data:/usr/src/app/data
+      - ./static:/usr/src/app/static
+      - ./media:/usr/src/app/media
+    env_file: .env
+
+volumes:
+  pgdata:
