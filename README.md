@@ -102,3 +102,147 @@ Status code: 201
   "token": "6ce5e4a1ec6876064c7fe16b68e61739ec88e31b"
 }
 ```
+
+
+#### Создание приложения ####
+
+```http
+POST /app/
+```
+
+Заголовки
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `string` | токен **обязательно** |
+
+
+Тело запроса 
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `APP_ID` | `integer` | **обязательно** |
+| `name` | `string` | **обязательно** |
+| `description` | `string` | необязательно |
+
+
+**Ответ**
+```
+Status code: 201
+{
+  "APP_ID": 12344,
+  "name": "Test app",
+  "description": "",
+  "API_KEY": "Me9C54TI2rz9iYD4k3mf5Mkb2FMUwxvG"
+}
+```
+
+#### Изменение приложения ####
+
+```http
+PATCH /app/
+```
+
+Заголовки
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `string` | токен **обязательно** |
+
+
+Тело запроса 
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `APP_ID` | `integer` | необязательно |
+| `name` | `string` | необязательно |
+| `description` | `string` | необязательно |
+
+
+**Ответ**
+```
+Status code: 200
+{
+  "APP_ID": 12344,
+  "name": "Test app",
+  "description": "",
+  "API_KEY": "Me9C54TI2rz9iYD4k3mf5Mkb2FMUwxvG"
+}
+```
+
+#### Удаление приложения ####
+
+```http
+DELETE /app/{id}/
+```
+
+Заголовки
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `string` | токен **обязательно** |
+
+
+Тело запроса 
+`
+нет
+`
+
+
+**Ответ**
+```
+Status code: 204
+
+```
+
+#### Изменение API_KEY ####
+
+```http
+POST /app/{id}/create_api_key/
+```
+
+Заголовки
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `string` | токен **обязательно** |
+
+
+Тело запроса 
+`
+нет
+`
+
+
+**Ответ**
+```
+Status code: 200
+
+"daadaw2412FW1AD"
+```
+
+#### Получение информации о приложении ####
+
+```http
+GET /api/test/
+```
+
+Заголовки
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `Authorization` | `string` | токен **обязательно** |
+| `API_KEY` | `string` | API_KEY **обязательно** |
+
+
+
+**Ответ**
+```
+Status code: 200
+{
+  "APP_ID": 12344,
+  "name": "Test app",
+  "description": "",
+  "API_KEY": "Me9C54TI2rz9iYD4k3mf5Mkb2FMUwxvG"
+}
+```

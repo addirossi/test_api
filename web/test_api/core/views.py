@@ -24,12 +24,10 @@ class AppViewSet(viewsets.GenericViewSet,
         return {'request': self.request}
 
     @action(['POST'], detail=True)
-    def create_new_api_key(self, request, pk=None):
+    def create_api_key(self, request, pk=None):
         app = self.get_object()
         app.generate_api_key()
-        serializer = self.get_serializer(data=app)
-        serializer.is_valid()
-        return JsonResponse(data=serializer.data)
+        return Response(app.API_KEY)
 
 
 class APITestView(APIView):
