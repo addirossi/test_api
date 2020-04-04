@@ -75,6 +75,7 @@ DATABASES = {
 }
 
 MIDDLEWARE = [
+    'test_api.core.middleware.CheckAPIKeyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
